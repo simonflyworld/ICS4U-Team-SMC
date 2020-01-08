@@ -4,26 +4,7 @@ Created on Tue Jan  7 11:31:36 2020
 
 @author: Simon
 """
-"""
-from multiprocessing import Process, Pipe
-def send(pipe):
-    pipe.send(['spam'] + [42, 'egg'])
-    pipe.close()
 
-def talk(pipe):
-    pipe.send(dict(name = 'Bob', spam = 42))
-    reply = pipe.recv()
-    print('talker got:', reply)
-
-if __name__ == '__main__':
-    (con1, con2) = Pipe()
-    sender = Process(target = send, name = 'send', args = (con1, ))
-    sender.start()
-
-    child = Process(target = talk, name = 'talk', args = (con2,))
-    child.start()
-
-"""
 import multiprocessing
 #import os
 def send(x,y,conn):  #conn管道类型
