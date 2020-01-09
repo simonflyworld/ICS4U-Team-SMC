@@ -14,6 +14,12 @@ y_data = str(x)
 """
 冗余算法通讯
 """
+#存储为数据库
+with open("x_data(for_training).txt", "a") as f:
+    f.write(x_data)
+
+with open("y_data(for_training).txt", "a") as f:
+    f.write(y_data)
 #通道A
 with open("x.txt", "w") as f:
     f.write(x_data)
