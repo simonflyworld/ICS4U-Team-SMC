@@ -5,21 +5,60 @@ Created on Tue Jan  7 11:31:36 2020
 @author: Simon
 """
 
-import multiprocessing
-#import os
-def send(x,y,conn):  #conn管道类型
-    conn.send(x,y)  #发送的数据
-    conn.close()  #关闭
- 
-def reciver(conn):
-    print(conn.recv())
- 
-if  __name__=="__main__":
-    conn_a,conn_b=multiprocessing.Pipe() #创建一个管道，两个口
-    """
-    接口x,y
-    """
-    sender=multiprocessing.Process(target=send,args=(x,y,conn_a,))
-    sender.start()
-    reciver(conn_b)
-    sender.join()
+x = 121
+x_data = str(x)
+
+y = 121
+y_data = str(x)
+
+"""
+冗余算法通讯
+"""
+#通道A
+with open("x.txt", "w") as f:
+    f.write(x_data)
+    
+with open("x.txt", 'r') as f:
+    contents = f.read()
+    print(contents)
+
+
+#通道B（冗余通道）
+with open("xb.txt", "w") as f:
+    f.write(x_data)
+    
+with open("xb.txt", 'r') as f:
+    contents = f.read()
+    print(contents)
+
+
+
+#通道A
+with open("y.txt", "w") as f:
+    f.write(y_data)
+    
+with open("y.txt", 'r') as f:
+    contents = f.read()
+    print(contents)
+
+
+#通道B（冗余通道）
+with open("yb.txt", "w") as f:
+    f.write(y_data)
+    
+with open("yb.txt", 'r') as f:
+    contents = f.read()
+    print(contents)
+
+
+try :
+    with open("y.txt", 'r') as f:
+        y_contents = f.read()
+        print(y_contents)
+        
+    
+
+except:
+    with open("yb.txt", 'r') as f:
+        y_contents = f.read()
+        print(y_contents)
