@@ -56,15 +56,30 @@ with open("yb.txt", 'r') as f:
     contents = f.read()
     print(contents)
 
-
+"""
+y输出
+"""
 try :
     with open("y.txt", 'r') as f:
         y_contents = f.read()
         print(y_contents)
-        
+    
     
 
 except:
     with open("yb.txt", 'r') as f:
         y_contents = f.read()
         print(y_contents)
+        
+"""
+x输出
+"""
+try:
+    with open("x.txt", 'r') as f:
+        contents = f.read()
+        print(contents)
+
+except:
+    with open("xb.txt", 'r') as f:
+        contents = f.read()
+        print(contents)
